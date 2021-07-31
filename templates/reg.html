@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+<div class=center>
+    <h3 class="display-3">Sign up</h3>
+    <form action="{{url_for('sign_up')}}" method="post">
+        <input type="text" name="email">
+        <label for="email">Email</label></br>
+        <input type="text" name="pwd">
+        <label for="pwd">Password</label></br>
+        <input type="text" name="rpwd">
+        <label for="rpwd">re-enter password</label></br>
+        <input class="btn btn-primary" type="submit"></br>
+    </form>
+    <p>{{msg}}</p>
+    <p>Click here to<a href='/sign_in'>Sign in</a></p>
+</div>
+
+{% endblock %}

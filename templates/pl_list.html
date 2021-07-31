@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="">
+    <table class="table table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">poles created</th>
+
+
+                <th scope="col">click here to view results</th>
+
+                <th scope="col">poll link </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {%for i in range(0,len)%}
+            <tr>
+                <td>{{i+1}}</td>
+                <td>{{pole_name[i]}}</td>
+                <td><a href="{{url_for('results',p_id=pid[i])}}">Results</a></td>
+
+
+
+                <td><a href="{{url_for('share',p_id=pid[i])}}">poll link</a></td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="{{url_for('create',uid=uid)}}">Create poll</a>
+</div>
+{% endblock %}

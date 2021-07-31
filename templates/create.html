@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="text-center">
+    <script>
+        $(document).ready(function () {
+
+            var MaxInputs = 10;
+            var InputsWrapper = $("#InputsWrapper");
+            var AddButton = $("#AddMoreFileBox");
+
+            var x = InputsWrapper.length;
+            var FieldCount = 1;
+
+
+            $(AddButton).click(function (e) {
+                if (x <= MaxInputs) {
+                    FieldCount++;
+
+                    $(InputsWrapper).append('<div class="row"><p class="text-center"><input type="text"  placeholder="Enter your option" class="text-center" name="opt[]" id="field_' + FieldCount + '" value=" "/></p><a href="#" class="btn btn-danger removeclass">×</a></div>');
+                    x++;
+                }
+                return false;
+            });
+
+            $("body").on("click", ".removeclass", function (e) {
+                if (x > 1) {
+                    $(this).parent('div').remove();
+                    x--;
+                }
+                return false;
+            })
+            $('#submit').click(function () {
+                $.ajax({
+                    url: "{{url_for('create',uid=uid)}}",
+                    method: "POST",
+                    data: $('#options').serialize() + '&ques=' + ques + '&pn=' + pn,
+                    success: function (data) {
+                        alert(data)
+                        $('#resultbox').html(data);
+                        $('#options')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+    </br></br></br></br></br>
+    <div class="form-group">
+        <form name="options" id="options">
+            <label for="pn">Poll Name</label></br>
+            <input type="text" id="pn" name="pn"></br></br></br></br>
+            <label for="ques">Question</label></br>
+            <input type="text" id="ques" name="ques"></br>
+            <h2 for="add">create options:</h2>
+            <div id="resultbox"></div></br>
+            <div id="InputsWrapper">
+                <input name="opt[]" type="text"></br>
+                <button type="button" name="add" id="AddMoreFileBox">Add options</button>
+            </div>
+            </br>
+            <input class="btn btn-primary" type="button" name="submit" id="submit" value="Submit">
+        </form>
+        <p>{{msg}}</p>
+    </div>
+</div>
+{%endblock%}

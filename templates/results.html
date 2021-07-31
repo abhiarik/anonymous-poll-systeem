@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block body %}
+
+<table class="table table">
+    <thead class="thead-dark">
+
+        <tr>
+
+            <th class="col">options</th>
+            <th class="col">votes</th>
+
+        </tr>
+
+
+    </thead>
+    <tbody>
+        {%for i in range(0,l)%}
+        <tr>
+            <td>{{nam[i]}}</td>
+            <td>{{val[i]}}</td>
+
+        </tr>
+        {%endfor%}
+
+    </tbody>
+</table>
+
+{% endblock %}

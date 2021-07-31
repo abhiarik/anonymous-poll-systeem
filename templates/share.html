@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+<div class=text-center>
+    <form action="{{url_for('share',p_id=p_id)}}" method="post">
+        <span class="display-3">{{pn}}</span></br></br></br></br>
+        <span class="display-5">{{ques}}</span></br>
+        <label for="poll">poll options:</label>
+        <select id="poll" name="poll">
+            {%for i in ans%}
+            <option>{{i}}</option>
+            {%endfor%}
+        </select></br></br>
+        <input class="btn btn-primary" type="submit">
+    </form>
+    <p>{{msg}}</p>
+</div>
+<p>{{msg}}</p>
+{%endblock%}
