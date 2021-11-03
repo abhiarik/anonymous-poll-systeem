@@ -8,9 +8,6 @@ def create_app():
     app = Flask("project")
     app.config.from_mapping(DATABASE='project')
 
-    from . import form
-    app.register_blueprint(form.bp)
-
     from . import db
 
     @app.route('/')
@@ -147,7 +144,7 @@ def create_app():
             pd = cur.fetchone()
             pn, ques = pd[0], pd[1]
             cur.execute(
-                "select distinct(ans) from poll_results where poll_id=%s", (p_id))
+                "select distinct(ans) from poll_results where poll_id=%s", (p_id,))
             ans = [x[0] for x in cur.fetchall()]
             data = dict(
                 ans=ans,
